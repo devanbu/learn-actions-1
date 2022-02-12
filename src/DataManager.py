@@ -1,18 +1,24 @@
-class Enrollee:
-    pass
+from typing import Set
+from typing import Dict
+from typing import Optional
+from typing import Any
+from typing import cast
+
+#class Enrollee:
+#    pass
 
 
-class Homework:
-    pass
+#class Homework:
+#    pass
 
 
 class Course:
-    def __init__(self, name: str, year: int, capacity: int) -> None:
+    def __init__(self, name: str, year: int, capacity: int ) -> None:
         self.name = name
         self.year = year
         self.capacity = capacity
-        self.homeworks = set()
-        self.enrollees = set()
+        self.homeworks: Set[Homework] = set()
+        self.enrollees: Set[Enrollee]= set()
 
     def addStudent(self, new_un: Enrollee):
         self.enrollees.add(new_un)
@@ -26,16 +32,17 @@ class Course:
     def addHomework(self, homework: Homework):
         self.homeworks.add(homework)
 
-    def getHomework(self, name: str) -> Homework:
+    def getHomework(self, name: str) -> Optional[Homework]:
+        hw: Homework
         for hw in self.homeworks:
-            if hw.name == name:
+            if hw.getName() == name:
                 return hw
         return None
 
 
 class Enrollee:
     def __init__(self, name: str):
-        self.courses = set()
+        self.courses: Set[Course] = set()
         self.name = name
 
     def getName(self):
@@ -47,12 +54,12 @@ class Enrollee:
     def dropCourse(self, course: Course):
         self.courses.remove(course)
 
-    def equals(self, other: any) -> bool:
+    def equals(self, other: Any) -> bool:
         if (other == None):
-            return false
+            return False
         if (not isinstance(other, Enrollee)):
-            return false
-        return other.getName() == self.name
+            return False
+        return cast(Homework,other).getName() == self.name
 
 
 # This is the Data Manager code
@@ -60,7 +67,7 @@ enrollees: set[Enrollee] = set()
 courseInstructors: dict[Course, str] = dict()
 
 
-def findCourse(name: str, year: int) -> Course:
+def findCourse(name: str, year: int) -> Optional[Course]:
     for crs in courseInstructors.keys():
         if(crs.name == name and crs.year == year):
             return crs
@@ -86,8 +93,8 @@ def reset():
 class Homework:
     def __init__(self, name: str):
         self.name = name
-        self.studentSubmissions = dict()
-        self.studentGrades = dict()
+        self.studentSubmissions : Dict[Enrollee,str] = dict()
+        self.studentGrades :Dict[Enrollee,int]= dict()
 
     def getName(self):
         return self.name
@@ -106,7 +113,7 @@ class Homework:
 
     def equals(self, other):
         if other is None:
-            return false
+            return False
         if not (isinstance(other, Homework)):
-            return false
+            return False
         return Homework(other).name == self.name
