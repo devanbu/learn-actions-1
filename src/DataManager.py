@@ -1,58 +1,65 @@
-class Enrollee:
-    pass
+from typing import Set
+from typing import Dict
+from typing import Optional
+from typing import Any
+from typing import cast
+
+#class Enrollee:
+#    pass
 
 
-class Homework:
-    pass
+#class Homework:
+#    pass
 
 
 class Course:
-    def __init__(self, name: str, year: int, capacity: int) -> None:
+    def __init__(self, name: str, year: int, capacity: int ) -> None:
         self.name = name
         self.year = year
         self.capacity = capacity
-        self.homeworks = set()
-        self.enrollees = set()
+        self.homeworks: Set[Homework] = set()
+        self.enrollees: Set[Enrollee]= set()
 
-    def addStudent(self, new_un: Enrollee):
+    def addStudent(self, new_un: Enrollee)->None:
         self.enrollees.add(new_un)
 
-    def removeStudent(self, the_un: Enrollee):
+    def removeStudent(self, the_un: Enrollee) -> None:
         self.enrollees.remove(the_un)
 
-    def getEnrollees(self) -> set:
+    def getEnrollees(self) -> Set[Enrollee]:
         return self.enrollees
 
-    def addHomework(self, homework: Homework):
+    def addHomework(self, homework: Homework) -> None:
         self.homeworks.add(homework)
 
-    def getHomework(self, name: str) -> Homework:
+    def getHomework(self, name: str) -> Optional[Homework]:
+        hw: Homework
         for hw in self.homeworks:
-            if hw.name == name:
+            if hw.getName() == name:
                 return hw
         return None
 
 
 class Enrollee:
     def __init__(self, name: str):
-        self.courses = set()
+        self.courses: Set[Course] = set()
         self.name = name
 
-    def getName(self):
+    def getName(self) -> str:
         return self.name
 
-    def addCourse(self, course: Course):
+    def addCourse(self, course: Course) -> None:
         self.courses.add(course)
 
-    def dropCourse(self, course: Course):
+    def dropCourse(self, course: Course) -> None:
         self.courses.remove(course)
 
-    def equals(self, other: any) -> bool:
+    def equals(self, other: Any) -> bool:
         if (other == None):
-            return false
+            return False
         if (not isinstance(other, Enrollee)):
-            return false
-        return other.getName() == self.name
+            return False
+        return cast(Homework,other).getName() == self.name
 
 
 # This is the Data Manager code
@@ -60,7 +67,7 @@ enrollees: set[Enrollee] = set()
 courseInstructors: dict[Course, str] = dict()
 
 
-def findCourse(name: str, year: int) -> Course:
+def findCourse(name: str, year: int) -> Optional[Course]:
     for crs in courseInstructors.keys():
         if(crs.name == name and crs.year == year):
             return crs
@@ -76,7 +83,7 @@ def findStudent(name: str) -> Enrollee:
     return new_un
 
 
-def reset():
+def reset() -> None:
     enrollees.clear()
     courseInstructors.clear()
 
@@ -86,27 +93,27 @@ def reset():
 class Homework:
     def __init__(self, name: str):
         self.name = name
-        self.studentSubmissions = dict()
-        self.studentGrades = dict()
+        self.studentSubmissions : Dict[Enrollee,str] = dict()
+        self.studentGrades :Dict[Enrollee,int]= dict()
 
-    def getName(self):
+    def getName(self) -> str :
         return self.name
 
-    def submit(self, enrollee: Enrollee, solution: str):
+    def submit(self, enrollee: Enrollee, solution: str) -> None:
         self.studentSubmissions[enrollee] = solution
 
-    def gradeStudent(self, enrollee: Enrollee, grade: int):
+    def gradeStudent(self, enrollee: Enrollee, grade: int) -> None:
         self.studentGrades[enrollee] = grade
 
-    def getSubmission(self, enrollee: Enrollee):
+    def getSubmission(self, enrollee: Enrollee) -> str:
         return self.studentSubmissions[enrollee]
 
-    def getGrade(self, enrollee: Enrollee):
+    def getGrade(self, enrollee: Enrollee) -> int:
         return self.studentGrades[enrollee]
 
-    def equals(self, other):
+    def equals(self, other : Any) -> bool:
         if other is None:
-            return false
+            return False
         if not (isinstance(other, Homework)):
-            return false
-        return Homework(other).name == self.name
+            return False
+        return other.name == self.name
