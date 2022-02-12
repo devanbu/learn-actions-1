@@ -3,14 +3,14 @@ from src.DataManager import Course, Homework, Enrollee, findCourse,findStudent
 
 
 def addHomework(className: str,
-                year: int, homework: str):
+                year: int, homework: str) -> None:
     course: Optional[Course] = findCourse(className, year)
     if not course is None:
         course.addHomework(Homework(homework))
 
 
 def assignGrade(className: str,
-                year: int, hwName: str, stuName: str, grade: int):
+                year: int, hwName: str, stuName: str, grade: int) -> None:
     the_un: Enrollee = findStudent(stuName)
     course: Optional[Course] = findCourse(className, year)
     if (not the_un is None) and (not course is None):

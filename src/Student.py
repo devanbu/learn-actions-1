@@ -2,7 +2,7 @@ from typing import Optional
 from src.DataManager import Course, Enrollee, Homework, findCourse,findStudent
 
 
-def registerForClass(stuName: str, clName: str, year: int):
+def registerForClass(stuName: str, clName: str, year: int) -> None:
     the_un: Enrollee = findStudent(stuName)
     course: Optional[Course] = findCourse(clName, year)
     if not (course is None or the_un is None):
@@ -12,7 +12,7 @@ def registerForClass(stuName: str, clName: str, year: int):
     return
 
 
-def dropClass(stuName: str, clName: str, year: int):
+def dropClass(stuName: str, clName: str, year: int) -> None:
     the_un: Enrollee = findStudent(stuName)
     course: Optional[Course] = findCourse(clName, year)
     if not (course is None or the_un is None):
@@ -22,7 +22,7 @@ def dropClass(stuName: str, clName: str, year: int):
 
 
 def submitHomework(stuName: str, hwName: str, answer: str,
-                   clName: str, year: int):
+                   clName: str, year: int) -> None:
     the_un: Enrollee = findStudent(stuName)
     course: Optional[Course] = findCourse(clName, year)
     if not (course is None or the_un is None):

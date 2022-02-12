@@ -20,16 +20,16 @@ class Course:
         self.homeworks: Set[Homework] = set()
         self.enrollees: Set[Enrollee]= set()
 
-    def addStudent(self, new_un: Enrollee):
+    def addStudent(self, new_un: Enrollee) -> None:
         self.enrollees.add(new_un)
 
-    def removeStudent(self, the_un: Enrollee):
+    def removeStudent(self, the_un: Enrollee) -> None:
         self.enrollees.remove(the_un)
 
-    def getEnrollees(self) -> set:
+    def getEnrollees(self) -> Set[Enrollee]:
         return self.enrollees
 
-    def addHomework(self, homework: Homework):
+    def addHomework(self, homework: Homework) -> None :
         self.homeworks.add(homework)
 
     def getHomework(self, name: str) -> Optional[Homework]:
@@ -45,13 +45,13 @@ class Enrollee:
         self.courses: Set[Course] = set()
         self.name = name
 
-    def getName(self):
+    def getName(self) -> str:
         return self.name
 
-    def addCourse(self, course: Course):
+    def addCourse(self, course: Course) -> None:
         self.courses.add(course)
 
-    def dropCourse(self, course: Course):
+    def dropCourse(self, course: Course) -> None:
         self.courses.remove(course)
 
     def equals(self, other: Any) -> bool:
@@ -83,7 +83,7 @@ def findStudent(name: str) -> Enrollee:
     return new_un
 
 
-def reset():
+def reset() -> None:
     enrollees.clear()
     courseInstructors.clear()
 
@@ -96,24 +96,24 @@ class Homework:
         self.studentSubmissions : Dict[Enrollee,str] = dict()
         self.studentGrades :Dict[Enrollee,int]= dict()
 
-    def getName(self):
+    def getName(self) -> str:
         return self.name
 
-    def submit(self, enrollee: Enrollee, solution: str):
+    def submit(self, enrollee: Enrollee, solution: str) -> None:
         self.studentSubmissions[enrollee] = solution
 
-    def gradeStudent(self, enrollee: Enrollee, grade: int):
+    def gradeStudent(self, enrollee: Enrollee, grade: int) -> None:
         self.studentGrades[enrollee] = grade
 
-    def getSubmission(self, enrollee: Enrollee):
+    def getSubmission(self, enrollee: Enrollee) -> str:
         return self.studentSubmissions[enrollee]
 
-    def getGrade(self, enrollee: Enrollee):
+    def getGrade(self, enrollee: Enrollee) -> int:
         return self.studentGrades[enrollee]
 
-    def equals(self, other):
+    def equals(self, other: Any) -> bool:
         if other is None:
             return False
         if not (isinstance(other, Homework)):
             return False
-        return Homework(other).name == self.name
+        return other.name == self.name

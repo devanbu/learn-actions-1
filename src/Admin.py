@@ -6,7 +6,7 @@ from src.DataManager import findCourse
 
 
 
-def createClass(className: str, year: int, instructorName: str, capacity: int):
+def createClass(className: str, year: int, instructorName: str, capacity: int)-> None:
     """Creates a new class
 
     Args:
@@ -19,7 +19,7 @@ def createClass(className: str, year: int, instructorName: str, capacity: int):
     courseInstructors[course] = instructorName
 
 
-def changeCapacity(className: str, year: int, capacity: int):
+def changeCapacity(className: str, year: int, capacity: int)-> None:
     """[summary]
 
     Args:
