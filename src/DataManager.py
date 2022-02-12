@@ -74,7 +74,7 @@ def findCourse(name: str, year: int) -> Optional[Course]:
     return None
 
 
-def findStudent(name: str) -> Enrollee:
+def findStudent(name: str):
     for s in enrollees:
         if s.name == name:
             return s
@@ -102,13 +102,13 @@ class Homework:
     def submit(self, enrollee: Enrollee, solution: str) -> None:
         self.studentSubmissions[enrollee] = solution
 
-    def gradeStudent(self, enrollee: Enrollee, grade: int) -> None:
+    def gradeStudent(self, enrollee: Enrollee, grade: int) :
         self.studentGrades[enrollee] = grade
 
-    def getSubmission(self, enrollee: Enrollee) -> str:
+    def getSubmission(self, enrollee: Enrollee) :
         return self.studentSubmissions[enrollee]
 
-    def getGrade(self, enrollee: Enrollee) -> int:
+    def getGrade(self, enrollee: Enrollee):
         return self.studentGrades[enrollee]
 
     def equals(self, other : Any) -> bool:
