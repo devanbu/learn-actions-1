@@ -1,7 +1,8 @@
 ## What is this?
 
-This some scruffy sample code. The main purpose here is to learn how to use Python annotations properly,
-and also remove any warnings from pylint. 
+This some scruffy sample code. The main purpose here is to learn a) how to use Python type annotations properly,
+and b)  understand some of the pylint warnings, and eliminate them. 
+
 
 ## What should I do
 
@@ -30,10 +31,14 @@ indicate that there are no warnings/errors  left
 
 Most projects in the real-world utilize some kind of static analysis. For python projects, 
 type checking and linting are very commonly used tools. Each project has it's own way they like
-to use these tools. The options given above the ones we're using. 
+to use these tools. Some projects are very conservative and want no warnings of any sort to appear. 
+Some are liberal, and don't care about most warnings. The options given above the ones we're using, it's
+a moderate sort of scenario. 
 
-Doing this project will help you understand about how to use typing in python, as well as learn
-and understand some of the errors produced by linters. 
+Our desired learning outcome is that doing this project will help you understand about 
+how to use typing in python, as well as learn and understand some of the errors produced by linters, 
+and how to fix these errors. 
+
 
 ## How do I do this? 
 
