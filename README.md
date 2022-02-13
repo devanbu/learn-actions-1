@@ -43,3 +43,7 @@ your own work.
 
 Also, we've provided some sample annotations in the DataManager.py file. Use thease as a model. 
 
+## SECRET, REMOVE THIS FROM HOMEWORK TEMPLATE
+
+The main branch contains the homework, the other branch has a solution that doesn't produce
+any errors. 
