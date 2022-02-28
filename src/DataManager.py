@@ -4,23 +4,23 @@ from typing import Optional
 from typing import Any
 from typing import cast
 
-#class Enrollee:
+# class Enrollee:
 #    pass
 
 
-#class Homework:
+# class Homework:
 #    pass
 
 
 class Course:
-    def __init__(self, name: str, year: int, capacity: int ) -> None:
+    def __init__(self, name: str, year: int, capacity: int) -> None:
         self.name = name
         self.year = year
         self.capacity = capacity
         self.homeworks: Set[Homework] = set()
-        self.enrollees: Set[Enrollee]= set()
+        self.enrollees: Set[Enrollee] = set()
 
-    def addStudent(self, new_un: Enrollee)->None:
+    def addStudent(self, new_un: Enrollee) -> None:
         self.enrollees.add(new_un)
 
     def removeStudent(self, the_un: Enrollee) -> None:
@@ -59,12 +59,12 @@ class Enrollee:
             return False
         if (not isinstance(other, Enrollee)):
             return False
-        return cast(Homework,other).getName() == self.name
+        return cast(Homework, other).getName() == self.name
 
 
 # This is the Data Manager code
-enrollees: set[Enrollee] = set()
-courseInstructors: dict[Course, str] = dict()
+enrollees: Set[Enrollee] = set()
+courseInstructors: Dict[Course, str] = dict()
 
 
 def findCourse(name: str, year: int) -> Optional[Course]:
@@ -93,25 +93,25 @@ def reset() -> None:
 class Homework:
     def __init__(self, name: str):
         self.name = name
-        self.studentSubmissions : Dict[Enrollee,str] = dict()
-        self.studentGrades :Dict[Enrollee,int]= dict()
+        self.studentSubmissions: Dict[Enrollee, str] = dict()
+        self.studentGrades: Dict[Enrollee, int] = dict()
 
-    def getName(self) -> str :
+    def getName(self) -> str:
         return self.name
 
     def submit(self, enrollee: Enrollee, solution: str) -> None:
         self.studentSubmissions[enrollee] = solution
 
-    def gradeStudent(self, enrollee: Enrollee, grade: int) :
+    def gradeStudent(self, enrollee: Enrollee, grade: int):
         self.studentGrades[enrollee] = grade
 
-    def getSubmission(self, enrollee: Enrollee) :
+    def getSubmission(self, enrollee: Enrollee):
         return self.studentSubmissions[enrollee]
 
     def getGrade(self, enrollee: Enrollee):
         return self.studentGrades[enrollee]
 
-    def equals(self, other : Any) -> bool:
+    def equals(self, other: Any) -> bool:
         if other is None:
             return False
         if not (isinstance(other, Homework)):
