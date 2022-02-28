@@ -3,6 +3,7 @@
 This some scruffy sample code. The main purpose here is to learn a) how to use Python type annotations properly,
 and b)  understand some of the pylint warnings, and eliminate them. 
 
+Also trying to learn to use github actions
 
 ## What should I do
 
