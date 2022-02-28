@@ -4,12 +4,13 @@ from typing import Optional
 from typing import Any
 from typing import cast
 
-# class Enrollee:
-#    pass
+
+class Enrollee:
+    pass
 
 
-# class Homework:
-#    pass
+class Homework:
+    pass
 
 
 class Course:

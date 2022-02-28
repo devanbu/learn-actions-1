@@ -62,4 +62,4 @@ jobs:
           pip install pytest-cov
       - name: pytestcoverage
         run: |
-          pytest --cov
+          pytest --cov src/
