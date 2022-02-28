@@ -32,7 +32,7 @@ jobs:
           mypy src/
   checkit:
     runs-on: ubuntu-latest
-    name: Mypy
+    name: pylint
     steps:
       - uses: actions/checkout@v1
       - name: Set up Python 3.8
@@ -45,3 +45,18 @@ jobs:
       - name: pylint
         run: |
           pylint -disable==W,C src/
+  test:
+    runs-on: ubuntu-latest
+    name: pytest
+    steps:
+      - uses: actions/checkout@v1
+      - name: Set up Python 3.8
+        uses: actions/setup-python@v1
+        with:
+          python-version: 3.8
+      - name: Install pytest
+        run: |
+          pip install pytest
+      - name: pylint
+        run: |
+          pytest --cov --cov-report term-missing test
