@@ -57,6 +57,9 @@ jobs:
       - name: Install pytest
         run: |
           pip install pytest
-      - name: pylint
+      - name: Install pytest-cov
         run: |
-          pytest --cov --cov-report term-missing test
+          pip install pytest-cov
+      - name: pytestcoverage
+        run: |
+          pytest --cov
