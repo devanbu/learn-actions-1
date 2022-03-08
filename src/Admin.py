@@ -9,7 +9,7 @@ def createClass(className, year, instructorName, capacity):
         className (str): Name of the class/course
         year (int): year Calendar year in which the course is to be taught
         instructorName (str): instructorName Name of instructor to be assigned,
-        capacity (int): capacity Maximum capacity of this class 
+        capacity (int): capacity Maximum capacity of this class
     """
     course = Course(className, year, capacity)
     courseInstructors[course] = instructorName
@@ -27,7 +27,7 @@ def changeCapacity(className, year, capacity):
         course.capacity = capacity
 
 def classExists(className, year):
-    """REturn True if class exists. 
+    """REturn True if class exists.
     Args:
         className (str): Classname
         year (int): Yea
@@ -35,7 +35,7 @@ def classExists(className, year):
     """
     return findCourse(className, year) != None
 
-def getClassInstructor(className, year):
+def getClassInstructor(className, year:int):
     course = findCourse(className, year)
     if course is None:
         return None
